@@ -1,0 +1,35 @@
+﻿@model catigory
+@{
+    ViewData["Title"] = "creat";
+}
+
+<form method="post" asp-action="creat">
+    <div class="border p-3 mt-4" >
+        <div class="row pb-4">
+            <h2>
+                ایجاد دسته
+            </h2>
+        </div>
+       
+        <div class="mb-3">
+            <label>name</label>
+            <input asp-for="name" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="name" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="desplayorder"></label>
+            <input asp-for="desplayorder" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="desplayorder" class="text-danger"></span>
+
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px ">ایجاد دسته</button>
+        <a asp-controller="category" asp-action="index" class="btn" style="width:250px">بازگشت به صفحه ی قبل</a>
+    </div>
+
+
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

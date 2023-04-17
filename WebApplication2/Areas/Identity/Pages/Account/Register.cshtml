@@ -1,0 +1,96 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "ثبت نام";
+}
+
+
+
+<div class="row">
+	<div class="">
+		<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+			<h2 dir="ltr">Create a new account</h2>
+			<hr />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<br />
+			<div class="form-floating">
+				<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+				<label asp-for="Input.Email"></label>
+				<span asp-validation-for="Input.Email" class="text-danger"></span>
+			</div>
+			<br />
+			<div class="form-floating">
+				<input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+				<label asp-for="Input.Password"></label>
+				<span asp-validation-for="Input.Password" class="text-danger"></span>
+			</div>
+			<br />
+			<div class="form-floating">
+				<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+				<label asp-for="Input.ConfirmPassword"></label>
+				<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+			</div>
+			<br />
+			<select asp-for="Input.RoleName"  asp-items="@Model.Input.rolelist" class="form-select" id="p">
+				<option disabled selected>
+					-------انتخاب نقش-------
+				</option>
+			</select>
+			<br />
+			<select asp-for="Input.componyid" style="display:none" asp-items="@Model.Input.componylist" class="form-select" id="i">
+				<option disabled selected>
+					-------انتخاب کمپانی-------
+				</option>
+			</select>
+			<br />
+			<button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success">ثبت نام</button>
+		</form>
+	</div>
+	@*<div class="col-md-6 col-md-offset-2">
+	<section>
+
+
+	@{
+	if ((Model.ExternalLogins?.Count ?? 0) == 0)
+	te            {
+	}
+	else
+	{
+	<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+	<div>
+	<p>
+	@foreach (var provider in Model.ExternalLogins!)
+	{
+	<button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+	}
+	</p>
+	</div>
+	</form>
+	}
+	}
+	</section>
+	</div>*@
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+
+	<script>
+		$(document).ready(function () {
+			$('#p').change(function () {
+
+				var selection = $("#p option:selected").text();
+				
+				if (selection != 'کمپانی') {
+					
+					$('#i').hide();
+				}
+				else {
+					$('#i').show();
+				}
+			});
+
+		});
+	</script>
+
+}

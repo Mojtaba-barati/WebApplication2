@@ -1,0 +1,132 @@
+﻿@using webmarket.Models.viewModel;
+@model productvm
+@{
+	ViewData["Title"] = "ویرایش";
+	Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<form method="post" asp-action="upsert" enctype="multipart/form-data" asp-route-id="@Model.product.Id">
+	<input asp-for="product.Id" hidden/>
+	<input asp-for="product.imgurl" hidden />
+	<div class="border p-3 mt-4  bg-secondary">
+		<div class="row pb-4">
+			<h2 class="text-center text-bg-light text-white">
+				@(Model.product.Id != 0 ? "ویرایش" : "ایجاد") محصول
+			</h2>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-6">
+				<label asp-for="product.title"></label>
+				<input asp-for="product.title" class="form-control border-2" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.title" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-6">
+				<label asp-for="product.Description"></label>
+				<input asp-for="product.Description" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.Description" class="text-danger"></span>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-6">
+				<label asp-for="product.isbn"></label>
+				<input asp-for="product.isbn" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.isbn" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-6">
+				<label asp-for=" product.another"></label>
+				<input asp-for=" product.another" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for=" product.another" class="text-danger"></span>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-6">
+				<label asp-for="product.listprice"></label>
+				<input asp-for="product.listprice" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.listprice" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-6">
+				<label asp-for="product.price"></label>
+				<input asp-for="product.price" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.price" class="text-danger"></span>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-6">
+				<label asp-for="product.price50"></label>
+				<input asp-for="product.price50" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.price50" class="text-danger"></span>
+
+			</div>
+			<div class="mb-3 col-6">
+				<label asp-for="product.price100"></label>
+				<input asp-for="product.price100" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.price100" class="text-danger"></span>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="mb-3 col-6">
+				<label asp-for="product.imgurl"></label>
+				<input id="uploadbox" type="file" name="file" class="form-control" placeholder="مقدار را وارد کنید" />
+				<span asp-validation-for="product.imgurl" class="text-danger"></span>
+
+			</div>
+
+			<div class="mb-3 col-6 ">
+				<label asp-for="product.categoryid"></label>
+				<select asp-for="product.categoryid" asp-items="@Model.categorylist" class="form-select">
+					<option disabled selected>---انتخاب کنید----</option>
+				</select>
+				<span asp-validation-for="product.categoryid" class="text-danger"></span>
+
+			</div>
+		</div>
+		<div>
+			@if (Model.product.Id != 0)
+			{
+				<button type="submit" onclick=" return validationinput()" class="btn bg-success text-bg-primary border-5 " style="width:150px "><i class="bi bi-check-circle-fill" style="width:250px"></i>ویرایش محصول</button>
+			}
+			else
+			{
+				<button type="submit" onclick=" return validationinput()" class="btn bg-info text-bg-primary border-5" style="width:150px"><i class="bi bi-check-circle-fill" style="width:250px"></i>ایجاد محصول</button>
+			}
+
+
+			<a asp-controller="product" asp-action="Index" class="btn" style="width:250px">بازگشت به صفحه ی قبل</a>
+		</div>
+	</div>
+
+
+
+</form>
+
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
+<script>
+	function validationinput() {
+		alert("0");
+
+		if (document.getElementById("uploadbox").nodeValue == ""{
+			Swal.fire({
+				icon: 'error',
+				title: 'خطا',
+				text: 'شما تصویری را انخاب نکردید',
+
+			})
+		});
+	}
+
+</script>
+
+

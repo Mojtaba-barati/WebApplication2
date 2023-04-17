@@ -1,0 +1,47 @@
+﻿@model company
+@{
+    ViewData["Title"] = "edite";
+}
+
+<form method="post" asp-action="edit">
+    <div class="border p-3 mt-4">
+        <div class="row pb-4">
+            <h2>
+                ویرایش دسته
+            </h2>
+        </div>
+        
+        <div class="mb-3">
+            <label>name</label>
+            <input asp-for="Name" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Streepaddress"></label>
+            <input asp-for="Streepaddress" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="Streepaddress" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="city"></label>
+            <input asp-for="city" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="city" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="phonenumber"></label>
+            <input asp-for="phonenumber" class="form-control" placeholder="مقدار را وارد کنید" />
+            <span asp-validation-for="phonenumber " class="text-danger"></span>
+
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px ">ویرایش دسته</button>
+        <a asp-controller="compony" asp-action="Index" class="btn" style="width:250px">بازگشت به صفحه ی قبل</a>
+    </div>
+
+
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

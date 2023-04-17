@@ -1,0 +1,37 @@
+﻿@model IEnumerable<product>
+@{
+	ViewData["Title"] = "مشتریان";
+	Layout = "~/Areas/customer/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+	<div class="row">
+		@foreach (var item in Model)
+		{
+
+			<div class="col-lg 3 col-md-3 col-sm-12 col-xs-12">
+
+				<div class="card">
+					<img class="card-img-top" src="~/img/product/@item.imgurl" title="@item.title" alt="...">
+					<div class="card-body">
+						<h5 class="card-title text-center">@item.title</h5>
+						<hr />
+						<p class="card-text">نام نویسنده: <b>@item.another</b><br />دسته بندی: <b>@item.category.name</b></p>
+
+					</div>
+					<div class="card-footer">
+						<b class="text-dark">@item.price تومان</b>
+						<br>
+						<br>
+						<a asp-area="customer" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id" class="btn float-end bg-primary text-break">نمایش جزئیات</a>
+					</div>
+				</div>
+
+
+			</div>
+
+		}
+	</div>
+
+
+</div>
